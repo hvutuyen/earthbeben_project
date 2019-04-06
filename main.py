@@ -1,7 +1,7 @@
 from flask import Flask, url_for, render_template
 import erdbebenanalyse
 
-app = Flask(__name__)
+Erdbebenprojekt = Flask(__name__)
 
 @app.route("/disclaimer", methods=["GET", "POST"])
 def disclaimer():
