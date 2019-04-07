@@ -7,7 +7,7 @@ def mapping():
 
     #### Daten request ueber API
 
-    url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson"
+    url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson"
     param = dict()
     resp = requests.get(url=url, params = param)
     data = resp.json()  
