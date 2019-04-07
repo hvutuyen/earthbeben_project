@@ -1,4 +1,4 @@
-from flask import Flask, url_for, render_template
+from flask import Flask, url_for, render_template, send_file
 import erdbebenanalyse
 
 app = Flask(__name__)
@@ -11,9 +11,9 @@ def disclaimer():
 def index():
     erdbebenanalyse.mapping() # funktion das erdbebenanalyse.py ausfuehren
 
-    iframe = url_for('static', filename="Karte.html")
+    #iframe = url_for('static', filename="Karte.html")
     #iframe= "/Users/hoangvutuyen/Desktop/earthbeben/static/Karte.html"
-    return render_template("index.html", iframe=iframe)
+    return render_template("index.html")
 
 @app.route("/was-sind-erdbeben", methods=["GET", "POST"]) # Was sind Erdbeben
 def index1():
@@ -38,6 +38,10 @@ def datenschutz():
 @app.route("/impressum", methods=["GET", "POST"])
 def impressum():
     return render_template("impressum.html")
+
+@app.route("/templates/karte.html")
+def show_map():
+    return send_file("templates/karte.html")
 
 
 if __name__ == "__main__":

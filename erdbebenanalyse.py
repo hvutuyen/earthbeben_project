@@ -1,10 +1,9 @@
-
+import json
+import folium
+import requests
+import time
 
 def mapping():
-    import json
-    import folium
-    import requests
-    import time
 
     #### Daten request ueber API
 
@@ -64,6 +63,6 @@ def mapping():
                                         fill_color = colour(mg),color="grey",fill_opacity=0.6, radius = radien(mg)))
 
     map.add_child(fg)
-    return map.save("static/karte.html") # speichern der Karte in den Ordner "static", damit sie in das iFrame eingebunden werden kann
+    return map.save("templates/karte.html") # speichern der Karte in den Ordner "static", damit sie in das iFrame eingebunden werden kann
 
 
