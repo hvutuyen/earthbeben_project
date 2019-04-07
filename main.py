@@ -10,30 +10,19 @@ def disclaimer():
 @app.route("/", methods=["GET", "POST"]) # Karte
 def index():
     erdbebenanalyse.mapping() # funktion das erdbebenanalyse.py ausfuehren
-
-    #iframe = url_for('static', filename="Karte.html")
-    #iframe= "/Users/hoangvutuyen/Desktop/earthbeben/static/Karte.html"
     return render_template("index.html")
 
 @app.route("/was-sind-erdbeben", methods=["GET", "POST"]) # Was sind Erdbeben
 def index1():
     return render_template("index1.html")
 
-@app.route("/was-sind-erdbeben", methods=["POST"]) 
-def reply1():
-    return render_template("index1.html")
-
 @app.route("/die-staerksten-erdbeben", methods=["GET", "POST"]) # Die staerksten Erdbeben
 def index2():
     return render_template("index2.html")
 
-@app.route("/index2", methods=["POST"])
-def reply2():
-    return render_template("index2.html")
-
-@app.route("/datenschutz", methods=["GET", "POST"])
-def datenschutz():
-    return render_template("datenschutz.html")
+@app.route("/quellen", methods=["GET", "POST"])
+def quellen():
+    return render_template("quellen.html")
 
 @app.route("/impressum", methods=["GET", "POST"])
 def impressum():

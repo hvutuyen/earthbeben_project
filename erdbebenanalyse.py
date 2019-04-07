@@ -34,7 +34,7 @@ def mapping():
 
     #### Karte erstellen 
 
-    map = folium.Map(location=[52.521918, 13.413215], zoom_start=2)
+    map = folium.Map(location=[29.892464, 11.576124], zoom_start=1.5)
     fg = folium.FeatureGroup(name="Erdbeben")
 
     #### Funktion definieren, die die Magnitude in unterschiedlichen Farbskalen visualisiert 
