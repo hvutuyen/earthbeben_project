@@ -1,5 +1,5 @@
 from flask import Flask, url_for, render_template, send_file
-import erdbebenanalyse
+import erdbebenanalyse # eigenes Modul
 
 app = Flask(__name__)
 
@@ -30,7 +30,7 @@ def impressum():
 
 @app.route("/templates/karte.html")
 def show_map():
-    return send_file("templates/karte.html")
+    return send_file("templates/karte.html") # erstellt eine Verlinkung zur HTML, damit es zum iframe hinzugefuegt werden kann
 
 
 if __name__ == "__main__":

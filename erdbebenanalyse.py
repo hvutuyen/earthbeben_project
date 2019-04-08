@@ -7,7 +7,7 @@ def mapping():
 
     #### Daten request ueber API
 
-    url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson"
+    url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson"
     param = dict()
     resp = requests.get(url=url, params = param)
     data = resp.json()  
@@ -63,6 +63,6 @@ def mapping():
                                         fill_color = colour(mg),color="grey",fill_opacity=0.6, radius = radien(mg)))
 
     map.add_child(fg)
-    return map.save("templates/karte.html") # speichern der Karte in den Ordner "static", damit sie in das iFrame eingebunden werden kann
+    return map.save("templates/karte.html") # speichern der Karte in den Ordner "templates", damit sie in das iFrame eingebunden werden kann
 
 
