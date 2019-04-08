@@ -36,4 +36,4 @@ def show_map():
 if __name__ == "__main__":
     app.jinja_env.auto_reload = True
     app.config["TEMPLATES_AUTO_RELOAD"] = True
-    app.run(port = 1337, debug = True, threaded= True) # debug bei deploy auf False setzen
+    app.run(port = 1337, debug = False, threaded= True) # debug bei deploy auf False setzen
