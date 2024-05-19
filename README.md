@@ -8,4 +8,5 @@ We also managed to deploy the page on heroku (https://earthbeben-geomediengestal
 My partner created a simple template with some information about earthquakes. We linked the map to an iFrame, which I heard is not the way to do it.
 But since it was our first Webapp we were fine with our results :)
 
-![alt text](https://raw.githubusercontent.com/hvutuyen/earthbeben_project/master/Screenshot%202020-06-04%20at%2014.54.42.png "Logo Title Text 1")
+------- refactoring with streamlit and Machine Learning
+
