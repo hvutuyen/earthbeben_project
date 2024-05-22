@@ -4,6 +4,9 @@ import pydeck as pdk
 from ml_model import prepare_data, train_model, predict
 import time
 import pandas as pd
+import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.graph_objs as go
 
 # ------- get data -----------------
 
@@ -75,6 +78,34 @@ st.pydeck_chart(pdk.Deck(
     width="100%"
 
 ))
+
+# ----------- Diagram section -----------
+
+# histogram magnitude
+st.subheader("Interaktives Histogramm der Erdbebenmagnituden")
+fig_histogram = px.histogram(filtered_df, x='magnitude', nbins=30, title='Histogramm der Erdbebenmagnituden')
+fig_histogram.update_layout(
+    xaxis_title='Magnitude',
+    yaxis_title='Häufigkeit',
+    bargap=0.1
+)
+st.plotly_chart(fig_histogram)
+
+# timeplot
+st.subheader("Zeitreihenplot der Erdbeben")
+df['timestamp'] = pd.to_datetime(df['time'])
+df.set_index('timestamp', inplace=True)
+time_series = df.resample('D').size()
+st.line_chart(time_series)
+
+
+# average magnitude by region
+st.subheader("Durchschnittliche Magnitude nach Region")
+region_avg_mag = df.groupby('place')['magnitude'].mean().sort_values(ascending=False)
+st.bar_chart(region_avg_mag)
+
+### todo region (place) nach kontinent oder land aufschlüsseln
+
 
 # ----------- ML section ----------------
 
