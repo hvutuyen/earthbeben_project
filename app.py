@@ -99,13 +99,16 @@ time_series = df.resample('D').size()
 st.line_chart(time_series)
 
 
-# average magnitude by region
-st.subheader("Durchschnittliche Magnitude nach Region")
-region_avg_mag = df.groupby('place')['magnitude'].mean().sort_values(ascending=False)
-st.bar_chart(region_avg_mag)
+# count earthquakes by region
 
-### todo region (place) nach kontinent oder land aufschlüsseln
-
+st.subheader("Anzahl der Erdbeben nach Region")
+region_counts = filtered_df['region'].value_counts()
+fig_region_counts = px.bar(region_counts, x=region_counts.index, y=region_counts.values, title='Anzahl der Erdbeben nach Region')
+fig_region_counts.update_layout(
+    xaxis_title='Region',
+    yaxis_title='Anzahl der Erdbeben',
+)
+st.plotly_chart(fig_region_counts)
 
 # ----------- ML section ----------------
 
