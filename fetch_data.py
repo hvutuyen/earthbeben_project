@@ -22,29 +22,45 @@ US_STATES = {
 }
 
 def geocode_place(geolocator, place):
-    """Führt Geokodierung durch, um die Region basierend auf dem place-String zu bestimmen."""
+    """
+    
+    Führt geocoding durch, um die Region basierend auf dem place-String zu bestimmen.
+    
+    """
+    
     location = geolocator.geocode(place, language='en')
     if location:
-        return location.address.split(',')[-1].strip()
-    return 'Unknown'
+        return location.address.split(',')[-1].strip() # wenn geocoding erfolgreich, alles was nach komma kommt ist region
+    return 'Unknown' # sonst unknown
 
 def determine_region(place, geolocator):
-    """Bestimmt die Region basierend auf dem place-String oder durch Geokodierung."""
-    country_match = re.search(r'[^,]+$', place)
-    region = country_match.group(0).strip() if country_match else 'Unknown'
+    """
+    
+    Bestimmt die Region basierend auf dem place-String oder durch geocoding.
+    
+    """
+    
+    country_match = re.search(r'[^,]+$', place) # schaut nach dem letzten string nach dem komma
+    region = country_match.group(0).strip() if country_match else 'Unknown' # extrahiert die region (group(0)) aus dem string (entfernt den rest) else unknown
 
     if region in US_STATES.values() or region in US_STATES.keys():
         return 'United States'
     
-    if region == 'Unknown' or len(region) < 3:
+    if region == 'Unknown' or len(region) < 3: # if unkwon or country name too short
         return geocode_place(geolocator, place)
     
     return region
 
 @st.cache_data(ttl=3600)
 def fetch_earthquake_data():
-    """Abfrage der Erdbebendaten der letzten 30 Tage von der USGS API."""
+    """
+    
+    Abfrage der Erdbebendaten der letzten 7 Tage von der USGS API.
+    
+    """
+    
     url = "https://earthquake.usgs.gov/fdsnws/event/1/query"
+    
     params = {
         "format": "geojson",
         "starttime": (pd.to_datetime('today') - pd.Timedelta(days=7)).strftime('%Y-%m-%d'),
@@ -79,8 +95,14 @@ def fetch_earthquake_data():
 
 @st.cache_data(ttl=3600)
 def fetch_strongest_earthquakes():
-    """Abfrage der 10 stärksten Erdbeben seit 1900 von der USGS API."""
+    """
+    
+    Abfrage der 10 stärksten Erdbeben seit 1900 von der USGS API.
+    
+    """
+    
     url = "https://earthquake.usgs.gov/fdsnws/event/1/query"
+    
     params = {
         "format": "geojson",
         "starttime": "1900-01-01",
